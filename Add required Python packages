@@ -1,0 +1,9 @@
+requirements.txt
+streamlit
+groq
+audio-recorder-streamlit
+edge-tts
+import streamlit as st
+from groq import Groq
+from audio_recorder_streamlit import audio_recorder
+import edge_tts
