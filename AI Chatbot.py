@@ -2,6 +2,8 @@ import os
 import asyncio
 import tempfile
 import streamlit as st
+import pandas as pd
+import plotly.express as px
 from groq import Groq
 from audio_recorder_streamlit import audio_recorder
 import edge_tts
@@ -19,9 +21,13 @@ with st.sidebar:
     st.header("Configuration")
     api_key = st.text_input("Enter Groq API Key:", type="password")
     selected_model = st.selectbox(
-        "Choose Model:",
-        ["llama-3.3-70b-versatile", "llama-3.1-8b-instant", "mixtral-8x7b-32768"]
-    )
+    "Choose Model:",
+    [
+        "openai/gpt-oss-120b",
+        "openai/gpt-oss-20b",
+        "qwen/qwen3.6-27b"
+    ]
+)
     if st.button("Clear Chat"):
         st.session_state.messages = []
         st.rerun()
@@ -41,7 +47,7 @@ for message in st.session_state.messages:
 
 # 2. Audio Input Component
 st.write("---")
-st.write("🗣️ *Speak to the AI:*")
+st.write("🗣️ **Speak to the AI:**")
 audio_bytes = audio_recorder(
     text="Click to record",
     recording_color="#e8b62c",
