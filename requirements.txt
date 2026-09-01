@@ -1,0 +1,6 @@
+streamlit
+pandas
+plotly
+groq
+audio-recorder-streamlit
+edge-tts
